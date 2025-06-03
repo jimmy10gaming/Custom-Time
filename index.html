@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="animate">
+    <head>
+        <title>Custom Time</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,user-scalable=no,viewport-fit=cover"/>
+        <link rel="icon" href="./favicon.png"/>
+        <link rel="apple-touch-icon" href="./img/favicon-maskable.192.png">
+        <meta name="apple-mobile-web-app-title" content="Clockie"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        <meta name="theme-color" content="#f4f4f4"/>
+        <link rel="manifest" href="./manifest.json"/>
+        <link rel="canonical" href="https://clockie.app/"/>
+        <meta name="copyright" content="Gilad S."/>
+        <meta name="description" content="Beautiful online clock app you can customize as you like and will nicely fit every screen"/>
+        <meta name="keywords" content="clock,digital,time,digital clock,online clock,beautiful clock,beautiful online clock,online beautiful clock,clock app,desktop clock,desktop clock app,pwa"/>
+        <meta name="robots" content="noimageindex">
+        <meta property="og:site_name" content="Clockie"/>
+        <meta property="og:title" content="Clockie - Beautiful online clock"/>
+        <meta property="og:description" content="Beautiful online clock app you can customize as you like and will nicely fit every screen"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://clockie.app/"/>
+        <meta property="og:image" content="https://clockie.app/img/og.screenshot.jpg"/>
+        <link rel="preconnect" href="https://www.googletagmanager.com"/>
+        <script async src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+        <script async type="module" src="./index.js"></script>
+        <link rel="modulepreload" href="./js/app.js">
+        <link rel="stylesheet" crossorigin href="./css/app.css">
+    </head>
+    <body>
+        <h1 style="position: absolute; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); z-index: -1; pointer-events: none; opacity: 0; width: 1px; height: 1px; padding: 0px; margin: 0px; border: none;">Clockie</h1>
+        <p style="position: absolute; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); z-index: -1; pointer-events: none; opacity: 0; width: 1px; height: 1px; padding: 0px; margin: 0px; border: none;">Clockie is an online clock application that offers an extensive range of customization options paired with a visually appealing interface. Beautiful background images can be set to change at various intervals. In addition to its aesthetic appeal, it can be used offline and is compatible with Chromecast devices. This compatibility allows casting the clock to a larger screen, enabling it to run independently and offering a blend of utility and design that sets it apart as a unique timekeeping solution.</p>
+        <div id="container" style="opacity: 0">
+            <div class="backgroundImage"></div>
+            <div id="header">
+                <div class="buttons">
+                    <div class="edgeButton fullscreen" tabindex="-1" role="button" aria-label="Enter fullscreen" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 96 960 960" aria-hidden="true">
+                            <path d="M240 856q-17 0-28.5-11.5T200 816V696q0-17 11.5-28.5T240 656q17 0 28.5 11.5T280 696v80h80q17 0 28.5 11.5T400 816q0 17-11.5 28.5T360 856H240Zm0-360q-17 0-28.5-11.5T200 456V336q0-17 11.5-28.5T240 296h120q17 0 28.5 11.5T400 336q0 17-11.5 28.5T360 376h-80v80q0 17-11.5 28.5T240 496Zm360 360q-17 0-28.5-11.5T560 816q0-17 11.5-28.5T600 776h80v-80q0-17 11.5-28.5T720 656q17 0 28.5 11.5T760 696v120q0 17-11.5 28.5T720 856H600Zm120-360q-17 0-28.5-11.5T680 456v-80h-80q-17 0-28.5-11.5T560 336q0-17 11.5-28.5T600 296h120q17 0 28.5 11.5T760 336v120q0 17-11.5 28.5T720 496Z"/>
+                        </svg>
+                        <div class="tooltip bottom right" aria-hidden="true">Enter fullscreen</div>
+                    </div>
+                    <div class="edgeButton exitFullscreen" tabindex="-1" role="button" aria-label="Exit fullscreen" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 96 960 960" aria-hidden="true">
+                            <path d="M360 856q-17 0-28.5-11.5T320 816v-80h-80q-17 0-28.5-11.5T200 696q0-17 11.5-28.5T240 656h120q17 0 28.5 11.5T400 696v120q0 17-11.5 28.5T360 856ZM240 496q-17 0-28.5-11.5T200 456q0-17 11.5-28.5T240 416h80v-80q0-17 11.5-28.5T360 296q17 0 28.5 11.5T400 336v120q0 17-11.5 28.5T360 496H240Zm360 360q-17 0-28.5-11.5T560 816V696q0-17 11.5-28.5T600 656h120q17 0 28.5 11.5T760 696q0 17-11.5 28.5T720 736h-80v80q0 17-11.5 28.5T600 856Zm0-360q-17 0-28.5-11.5T560 456V336q0-17 11.5-28.5T600 296q17 0 28.5 11.5T640 336v80h80q17 0 28.5 11.5T760 456q0 17-11.5 28.5T720 496H600Z"/>
+                        </svg>
+                        <div class="tooltip bottom right" aria-hidden="true">Exit fullscreen</div>
+                    </div>
+                </div>
+            </div>
+            <div class="clockContainer">
+                <div class="spacer top"></div>
+                <div class="clock" aria-label="Clock">
+                    <div class="dataPart time" aria-label="The current time">
+                        <div class="number hours">
+                            <div class="value" data-value="00">00</div>
+                        </div>
+                        <div class="separator colon" data-value=":">:</div>
+                        <div class="number minutes">
+                            <div class="value" data-value="00">00</div>
+                        </div>
+                        <div class="separator colon secondsColon" data-value=":">:</div>
+                        <div class="number seconds">
+                            <div class="value" data-value="00">00</div>
+                        </div>
+                        <div class="number ampm">
+                            <div class="value" data-value="--">--</div>
+                        </div>
+                    </div>
+                    <div class="dataPart date" aria-label="The current date">
+                        <div class="number dayText">
+                            <div class="value" data-value=""></div>
+                        </div>
+                        <div class="separator comma dayComma" data-value=",">,</div>
+                        <div class="number monthText">
+                            <div class="value" data-value=""></div>
+                        </div>
+                        <div class="number days">
+                            <div class="value" data-value="00">00</div>
+                        </div>
+                        <div class="separator slash monthsSlash" data-value="/">/</div>
+                        <div class="number months">
+                            <div class="value" data-value="00">00</div>
+                        </div>
+                        <div class="separator comma monthsComma" data-value=",">,</div>
+                        <div class="separator slash yearsSlash" data-value="/">/</div>
+                        <div class="number years">
+                            <div class="value" data-value="0000">0000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="spacer bottom"></div>
+            </div>
+            <div id="footer">
+                <div class="messages">
+                    <div class="messageContainer imageInfo" aria-label="Background picture credit" inert></div>
+                </div>
+                <div class="settingsContainer">
+                    <div class="edgeButton cast" tabindex="-1" role="button" aria-label="Cast Clockie" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                            <path class="activeFill" d="M17,16L14.375,16C13.792,14.183 12.863,12.583 11.588,11.2C10.313,9.817 8.792,8.75 7.025,8L17,8C17.283,8 17.521,8.096 17.713,8.288C17.904,8.479 18,8.717 18,9L18,15C18,15.283 17.904,15.521 17.713,15.713C17.521,15.904 17.283,16 17,16Z"/>
+                            <path class="frame" d="M20,20L15,20C15,19.667 14.988,19.333 14.963,19C14.938,18.667 14.9,18.333 14.85,18L20,18L20,6L4,6L4,7.15C3.667,7.1 3.333,7.063 3,7.037C2.667,7.012 2.333,7 2,7L2,6C2,5.45 2.196,4.979 2.588,4.588C2.979,4.196 3.45,4 4,4L20,4C20.55,4 21.021,4.196 21.413,4.588C21.804,4.979 22,5.45 22,6L22,18C22,18.55 21.804,19.021 21.413,19.413C21.021,19.804 20.55,20 20,20Z"/>
+                            <path class="wave w0" d="M3.5,20C3.083,20 2.729,19.854 2.438,19.563C2.146,19.271 2,18.917 2,18.5C2,18.083 2.146,17.729 2.438,17.438C2.729,17.146 3.083,17 3.5,17C3.917,17 4.271,17.146 4.563,17.438C4.854,17.729 5,18.083 5,18.5C5,18.917 4.854,19.271 4.563,19.563C4.271,19.854 3.917,20 3.5,20Z"/>
+                            <path class="wave w1" d="M8,20C7.733,20 7.5,19.921 7.3,19.763C7.1,19.604 6.975,19.392 6.925,19.125C6.742,18.075 6.271,17.183 5.513,16.45C4.754,15.717 3.85,15.258 2.8,15.075C2.55,15.042 2.354,14.921 2.213,14.713C2.071,14.504 2,14.267 2,14C2,13.717 2.092,13.479 2.275,13.288C2.458,13.096 2.675,13.017 2.925,13.05C4.492,13.25 5.829,13.908 6.938,15.025C8.046,16.142 8.708,17.483 8.925,19.05C8.958,19.317 8.883,19.542 8.7,19.725C8.517,19.908 8.283,20 8,20Z"/>
+                            <path class="wave w2" d="M12,20C11.717,20 11.479,19.908 11.288,19.725C11.096,19.542 10.983,19.308 10.95,19.025C10.717,16.892 9.846,15.083 8.338,13.6C6.829,12.117 5.008,11.267 2.875,11.05C2.608,11.017 2.396,10.9 2.238,10.7C2.079,10.5 2,10.267 2,10C2,9.717 2.088,9.475 2.263,9.275C2.438,9.075 2.65,8.992 2.9,9.025C5.583,9.242 7.867,10.288 9.75,12.163C11.633,14.038 12.7,16.308 12.95,18.975C12.983,19.258 12.904,19.5 12.713,19.7C12.521,19.9 12.283,20 12,20Z"/>
+                        </svg>
+                        <div class="connectingContainer"></div>
+                        <div class="tooltip" aria-hidden="true">Cast Clockie</div>
+                    </div>
+                    <div class="edgeButton installPwa" tabindex="-1" role="button" aria-label="Install Clockie App" aria-hidden="true">
+                        <svg class="installMobileIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 96 960 960" aria-hidden="true">
+                            <path d="M280 1016q-33 0-56.5-23.5T200 936V216q0-33 23.5-56.5T280 136h280v80H280v40h280v80H280v480h400v-80h80v200q0 33-23.5 56.5T680 1016H280Zm0-120v40h400v-40H280Zm400-392V256q0-17 11.5-28.5T720 216q17 0 28.5 11.5T760 256v248l76-76q11-11 28-11t28 11q11 11 11 28t-11 28L748 628q-12 12-28 12t-28-12L548 484q-11-11-11-28t11-28q11-11 28-11t28 11l76 76ZM280 256v-40 40Zm0 640v40-40Z"/>
+                        </svg>
+                        <svg class="installDesktopIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 96 960 960" aria-hidden="true">
+                            <path d="M360 936q-17 0-28.5-11.5T320 896v-40H160q-33 0-56.5-23.5T80 776V296q0-33 23.5-56.5T160 216h320v80H160v480h640V656h80v120q0 33-23.5 56.5T800 856H640v40q0 17-11.5 28.5T600 936H360Zm320-297q-8 0-15-2.5t-13-8.5L508 484q-11-11-11.5-27.5T508 428q11-11 28-11t28 11l76 75V256q0-17 11.5-28.5T680 216q17 0 28.5 11.5T720 256v247l76-75q11-11 27.5-11.5T852 428q11 11 11 28t-11 28L708 628q-6 6-13 8.5t-15 2.5Z"/>
+                        </svg>
+                        <div class="tooltip" aria-hidden="true">Install Clockie App</div>
+                    </div>
+                    <div class="edgeButton settings" tabindex="0" role="button" aria-label="Settings">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 96 960 960" aria-hidden="true">
+                            <path d="M480 896q-33 0-56.5-23.5T400 816q0-33 23.5-56.5T480 736q33 0 56.5 23.5T560 816q0 33-23.5 56.5T480 896Zm0-240q-33 0-56.5-23.5T400 576q0-33 23.5-56.5T480 496q33 0 56.5 23.5T560 576q0 33-23.5 56.5T480 656Zm0-240q-33 0-56.5-23.5T400 336q0-33 23.5-56.5T480 256q33 0 56.5 23.5T560 336q0 33-23.5 56.5T480 416Z"/>
+                        </svg>
+                        <div class="tooltip right" aria-hidden="true">Settings</div>
+                    </div>
+                    <div id="panels">
+                        <div class="panel settings" id="settings" aria-hidden="true" inert>
+                            <div class="header">
+                                <div class="title">Settings</div>
+                            </div>
+                            <div class="toggles">
+                                <div class="section">
+                                    <div class="toggle theme" role="radiogroup" aria-label="Theme setting">
+                                        <div class="title">Theme</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="system">System</div>
+                                            <div class="option" tabindex="0" role="radio" value="light">Light</div>
+                                            <div class="option" tabindex="0" role="radio" value="dark">Dark</div>
+                                            <div class="option" tabindex="0" role="radio" value="image">Bing Image</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle clockSize" role="radiogroup" aria-label="Clock Size setting">
+                                        <div class="title">Clock Size</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="xs">XS</div>
+                                            <div class="option" tabindex="0" role="radio" value="s">S</div>
+                                            <div class="option" tabindex="0" role="radio" value="m">M</div>
+                                            <div class="option" tabindex="0" role="radio" value="l">L</div>
+                                            <div class="option" tabindex="0" role="radio" value="xl">XL</div>
+                                            <div class="option" tabindex="0" role="radio" value="fill">Fill</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle font" role="radiogroup" aria-label="Font setting">
+                                        <div class="title">Font</div>
+                                        <div class="options multiline">
+                                            <div class="row">
+                                                <div class="option" tabindex="0" role="radio" value="1">1</div>
+                                                <div class="option" tabindex="0" role="radio" value="2">2</div>
+                                                <div class="option" tabindex="0" role="radio" value="3">3</div>
+                                                <div class="option" tabindex="0" role="radio" value="4">4</div>
+                                                <div class="option" tabindex="0" role="radio" value="5">5</div>
+                                                <div class="option" tabindex="0" role="radio" value="6">6</div>
+                                                <div class="option" tabindex="0" role="radio" value="7">7</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="option" tabindex="0" role="radio" value="8">8</div>
+                                                <div class="option" tabindex="0" role="radio" value="9">9</div>
+                                                <div class="option" tabindex="0" role="radio" value="10">10</div>
+                                                <div class="option" tabindex="0" role="radio" value="11">11</div>
+                                                <div class="option" tabindex="0" role="radio" value="12">12</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sectionButtons">
+                                        <div class="sectionButton timeAndDate" tabindex="0" role="button" aria-label="Go to Time and Date settings">
+                                            <div class="title">Time and Date Settings</div>
+                                            <div class="chevronIcon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                                    <path d="M 9.531 6.501 C 9.719 6.405 9.932 6.372 10.141 6.405 C 10.349 6.439 10.541 6.537 10.69 6.687 L 15.29 11.287 C 15.44 11.436 15.538 11.628 15.572 11.836 C 15.605 12.045 15.572 12.258 15.476 12.446 C 15.38 12.634 15.227 12.787 15.039 12.883 C 14.851 12.979 14.638 13.012 14.429 12.979 C 14.221 12.945 14.029 12.847 13.88 12.697 L 9.28 8.097 C 9.13 7.948 9.032 7.756 8.998 7.548 C 8.965 7.339 8.998 7.126 9.094 6.938 C 9.094 6.938 9.094 6.938 9.094 6.938 C 9.19 6.75 9.343 6.597 9.531 6.501"/>
+                                                    <path d="M 13.88 11.292 C 14.029 11.142 14.221 11.044 14.429 11.01 C 14.638 10.977 14.851 11.01 15.039 11.106 C 15.227 11.202 15.38 11.355 15.476 11.543 C 15.572 11.731 15.605 11.944 15.572 12.153 C 15.538 12.361 15.44 12.553 15.29 12.702 L 10.69 17.302 C 10.541 17.452 10.349 17.55 10.141 17.584 C 9.932 17.617 9.719 17.584 9.531 17.488 C 9.343 17.392 9.19 17.239 9.094 17.051 C 8.998 16.863 8.965 16.65 8.998 16.441 C 9.032 16.233 9.13 16.041 9.28 15.892 L 13.88 11.292 Z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="sectionButton imageTheme" tabindex="0" role="button" aria-label="Go to Bing Image Theme settings">
+                                            <div class="title">Bing Image Theme Settings</div>
+                                            <div class="chevronIcon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                                    <path d="M 9.531 6.501 C 9.719 6.405 9.932 6.372 10.141 6.405 C 10.349 6.439 10.541 6.537 10.69 6.687 L 15.29 11.287 C 15.44 11.436 15.538 11.628 15.572 11.836 C 15.605 12.045 15.572 12.258 15.476 12.446 C 15.38 12.634 15.227 12.787 15.039 12.883 C 14.851 12.979 14.638 13.012 14.429 12.979 C 14.221 12.945 14.029 12.847 13.88 12.697 L 9.28 8.097 C 9.13 7.948 9.032 7.756 8.998 7.548 C 8.965 7.339 8.998 7.126 9.094 6.938 C 9.094 6.938 9.094 6.938 9.094 6.938 C 9.19 6.75 9.343 6.597 9.531 6.501"/>
+                                                    <path d="M 13.88 11.292 C 14.029 11.142 14.221 11.044 14.429 11.01 C 14.638 10.977 14.851 11.01 15.039 11.106 C 15.227 11.202 15.38 11.355 15.476 11.543 C 15.572 11.731 15.605 11.944 15.572 12.153 C 15.538 12.361 15.44 12.553 15.29 12.702 L 10.69 17.302 C 10.541 17.452 10.349 17.55 10.141 17.584 C 9.932 17.617 9.719 17.584 9.531 17.488 C 9.343 17.392 9.19 17.239 9.094 17.051 C 8.998 16.863 8.965 16.65 8.998 16.441 C 9.032 16.233 9.13 16.041 9.28 15.892 L 13.88 11.292 Z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <div class="about" aria-label="Information about the creator of Clockie">
+                                    Created by <a class="email" tabindex="0" rel="noopener nofollow">Gilad S.</a>
+                                </div>
+                                <div class="links">
+                                    <div class="linkButton copySettingsLink" tabindex="0" role="button" aria-label="Copy link to current settings">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -960 960 960" aria-hidden="true">
+                                            <path d="M280-280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h120q17 0 28.5 11.5T440-640q0 17-11.5 28.5T400-600H280q-50 0-85 35t-35 85q0 50 35 85t85 35h120q17 0 28.5 11.5T440-320q0 17-11.5 28.5T400-280H280Zm80-160q-17 0-28.5-11.5T320-480q0-17 11.5-28.5T360-520h240q17 0 28.5 11.5T640-480q0 17-11.5 28.5T600-440H360Zm200 160q-17 0-28.5-11.5T520-320q0-17 11.5-28.5T560-360h120q50 0 85-35t35-85q0-50-35-85t-85-35H560q-17 0-28.5-11.5T520-640q0-17 11.5-28.5T560-680h120q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H560Z"/>
+                                        </svg>
+                                        <div class="tooltip right label" aria-hidden="true">Copy link to current settings</div>
+                                        <div class="tooltip copySuccess" aria-hidden="true">Link copied</div>
+                                    </div>
+                                    <a class="linkButton productHunt" tabindex="0" target="_blank" href="https://www.producthunt.com/products/clockie" rel="nofollow" role="link" aria-label="Clockie on ProductHunt">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0z M13.6,14.4h-3.4V18H7.8V6h5.8c2.3,0,4.2,1.9,4.2,4.2S15.9,14.4,13.6,14.4z M15.4,10.2c0,1-0.8,1.8-1.8,1.8h-3.4V8.4h3.4C14.6,8.4,15.4,9.2,15.4,10.2z"/>
+                                        </svg>
+                                        <div class="tooltip right" aria-hidden="true">Clockie on ProductHunt</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel cast" id="cast" aria-hidden="true" inert>
+                            <div class="controls">
+                                <div class="castStatus" aria-label="Casting status">
+                                    <div class="castingTo">Casting to &nbsp;</div>
+                                    <div class="deviceName">a Chromecast-enabled device</div>
+                                </div>
+                                <div class="buttons">
+                                    <div class="panelButton stopCasting" tabindex="0" role="button" aria-label="Stop casting">
+                                        <div class="text" aria-hidden="true">Stop casting</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel timeAndDate" aria-hidden="true" inert>
+                            <div class="header">
+                                <div class="title">Time and Date Settings</div>
+                                <div class="closeButton transformFromChevron">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path class="x-1" d="M0 0h24v24H0"/>
+                                        <path class="x-2" d="M0 0h24v24H0"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="toggles">
+                                <div class="section left">
+                                    <div class="toggle seconds" role="radiogroup" aria-label="Seconds setting">
+                                        <div class="title">Seconds</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="show">Show</div>
+                                            <div class="option" tabindex="0" role="radio" value="hide">Hide</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle hours" role="radiogroup" aria-label="Hours setting">
+                                        <div class="title">Hours</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="24">24</div>
+                                            <div class="option" tabindex="0" role="radio" value="12">12</div>
+                                            <div class="option" tabindex="0" role="radio" value="12-ampm">12 + AM/PM</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle date" role="radiogroup" aria-label="Date setting">
+                                        <div class="title">Date</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="hide">Hide</div>
+                                            <div class="option" tabindex="0" role="radio" value="d">D</div>
+                                            <div class="option" tabindex="0" role="radio" value="dd">DD</div>
+                                            <div class="option" tabindex="0" role="radio" value="dm">DD/MM</div>
+                                            <div class="option" tabindex="0" role="radio" value="md">MM/DD</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle dateFormat" role="radiogroup" aria-label="Date setting">
+                                        <div class="title">Date format</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="american">American</div>
+                                            <div class="option" tabindex="0" role="radio" value="british">British</div>
+                                            <div class="option" tabindex="0" role="radio" value="custom">Custom</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="section right">
+                                    <div class="toggle day" role="radiogroup" aria-label="Day setting">
+                                        <div class="title">Day</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="short">Short</div>
+                                            <div class="option" tabindex="0" role="radio" value="full">Full</div>
+                                            <div class="option" tabindex="0" role="radio" value="hide">Hide</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle month" role="radiogroup" aria-label="Month setting">
+                                        <div class="title">Month</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="short">Short</div>
+                                            <div class="option" tabindex="0" role="radio" value="full">Full</div>
+                                            <div class="option" tabindex="0" role="radio" value="hide">Hide</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle year" role="radiogroup" aria-label="Year setting">
+                                        <div class="title">Year</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="short">Short</div>
+                                            <div class="option" tabindex="0" role="radio" value="full">Full</div>
+                                            <div class="option" tabindex="0" role="radio" value="hide">Hide</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel imageTheme" aria-hidden="true" inert>
+                            <div class="header">
+                                <div class="title">Bing Image Theme Settings</div>
+                                <div class="closeButton transformFromChevron">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path class="x-1" d="M0 0h24v24H0"/>
+                                        <path class="x-2" d="M0 0h24v24H0"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="toggles">
+                                <div class="section">
+                                    <div class="toggle imageDescription canHide hide" role="radiogroup" aria-label="Image Description setting">
+                                        <div class="title">Image Description</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="show">Full</div>
+                                            <div class="option" tabindex="0" role="radio" value="caption">Caption</div>
+                                            <div class="option" tabindex="0" role="radio" value="credit">Credit</div>
+                                            <div class="option" tabindex="0" role="radio" value="hide">Hide</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle imageDescriptionSize canHide hide" role="radiogroup" aria-label="Image Description Size setting">
+                                        <div class="title">Image Description Size</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="xs">XS</div>
+                                            <div class="option" tabindex="0" role="radio" value="s">S</div>
+                                            <div class="option" tabindex="0" role="radio" value="m">M</div>
+                                            <div class="option" tabindex="0" role="radio" value="l">L</div>
+                                            <div class="option" tabindex="0" role="radio" value="xl">XL</div>
+                                            <div class="option" tabindex="0" role="radio" value="fit">Fit</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle imageChangeInterval canHide twoLines hide" role="radiogroup" aria-label="Image Change Interval setting">
+                                        <div class="title">Image Change Interval</div>
+                                        <div class="options multiline">
+                                            <div class="row">
+                                                <div class="option" tabindex="0" role="radio" value="latest">Latest image</div>
+                                                <div class="option" tabindex="0" role="radio" value="1d">1d</div>
+                                                <div class="option" tabindex="0" role="radio" value="12h">12h</div>
+                                                <div class="option" tabindex="0" role="radio" value="6h">6h</div>
+                                                <div class="option" tabindex="0" role="radio" value="3h">3h</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="option" tabindex="0" role="radio" value="1h">1h</div>
+                                                <div class="option" tabindex="0" role="radio" value="30m">30m</div>
+                                                <div class="option" tabindex="0" role="radio" value="10m">10m</div>
+                                                <div class="option" tabindex="0" role="radio" value="5m">5m</div>
+                                                <div class="option" tabindex="0" role="radio" value="3m">3m</div>
+                                                <div class="option" tabindex="0" role="radio" value="1m">1m</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle imageEffect canHide hide" role="radiogroup" aria-label="Image Effect setting">
+                                        <div class="title">Image Effect</div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="normal">Normal</div>
+                                            <div class="option" tabindex="0" role="radio" value="blur">Blur</div>
+                                            <div class="option" tabindex="0" role="radio" value="darken">Darken</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle textEffect canHide hide" role="radiogroup" aria-label="Text Effect setting">
+                                        <div class="title">
+                                            Text Effect<div class="safariAsterisk">*</div>
+                                        </div>
+                                        <div class="options">
+                                            <div class="option" tabindex="0" role="radio" value="adaptive-white">Adaptive White</div>
+                                            <div class="option" tabindex="0" role="radio" value="white">White</div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle clockPosition canHide twoLines hide" role="radiogroup" aria-label="Clock Position setting">
+                                        <div class="title">Clock Position</div>
+                                        <div class="options multiline">
+                                            <div class="row">
+                                                <div class="option" tabindex="0" role="radio" value="center">Center</div>
+                                                <div class="option" tabindex="0" role="radio" value="aboveCenter">Above Center</div>
+                                                <div class="option" tabindex="0" role="radio" value="top">Top</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="option" tabindex="0" role="radio" value="belowCenter">Below Center</div>
+                                                <div class="option" tabindex="0" role="radio" value="bottom">Bottom</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mayNotWorkOnSafariNote">*May not work properly on Safari</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
